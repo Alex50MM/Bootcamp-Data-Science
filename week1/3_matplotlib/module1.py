@@ -94,3 +94,107 @@ plt.plot(sma.work_force, sma.income, color='r', linestyle='solid', marker='^')
 plt.xlabel('Work Force')
 plt.ylabel('Income')
 plt.show()
+
+
+plt.plot(sma.work_force, sma.income, '--ro')  # --: dashline, r: red color, o: circular marker
+plt.xlabel('Work Force')
+plt.ylabel('Income')
+plt.show()
+
+plt.plot(sma.work_force, sma.income, 'ro')  # r: red color, o: circular marker
+plt.show()
+
+plt.plot(sma.work_force, sma.income, 'gx')  # g: green color, x: x marker
+plt.show()
+
+'''
+Other Options:
+
+plt.plot(sma.work_force, sma.income, 'go')  # g: green color, o: circular marker
+plt.plot(sma.work_force, sma.income, 'g^')  # g: green color, ^: triangles marker
+plt.plot(sma.work_force, sma.income, 'ro')  # r: red color, o: circular marker
+plt.plot(sma.work_force, sma.income, 'rx')  # r: red color, x: x marker
+plt.plot(sma.work_force, sma.income, 'b^')  # b: blue color, o: Triangle marker
+plt.plot(sma.work_force, sma.income, 'go--', linewidth=3)  # r: red color, o: circular marker
+
+
+'''
+
+# Changing Plot Size
+
+# Arguments
+# plt.figure(figsize=(new_width_pixels, new_height_pixels))
+
+plt.figure(figsize=(12, 5))  # 12x5 plot
+plt.plot(sma.work_force, sma.income)
+plt.xlabel('Work Force')
+plt.ylabel('Income')
+plt.show()
+
+
+# Multiple Plots
+
+# Multiple Plots in 1 Figure
+
+# Empty Plot
+fig, ax = plt.subplots()
+print(fig, ax)
+
+# 1 row and 2 columns - Method 1
+plt.subplot(1, 2, 1)  # row, column, index
+plt.plot(sma.work_force, sma.income, 'go')  # green + circles
+plt.title('Income vs Work Force')
+
+plt.subplot(1, 2, 2)  # row, column, index
+
+plt.plot(sma.hospital_beds, sma.income, 'r^')  # ed + triangles
+plt.title('Income vs Hospital Beds')
+
+plt.suptitle('Sub Plots')  # Add a centered title to the figure
+plt.show()
+
+
+# 1 row and 2 columns - Method 2
+fig, (ax1, ax2) = plt.subplots(1, 2)  # row, column
+
+fig.suptitle('Horizontally staked subplots')
+ax1.plot(sma.work_force, sma.income, 'go')
+ax1.set_title('Income vs Work Force')
+
+ax2.plot(sma.hospital_beds, sma.income, 'r^')
+ax2.set_title('Income vs WHospital Beds')
+
+plt.show()
+
+# sharey=True make the two subplots will share the y axis values then
+# no more numbers between plots
+fig, (ax1, ax2) = plt.subplots(1, 2, sharey=True)  # row, column
+
+fig.suptitle('Horizontally staked subplots')
+ax1.plot(sma.work_force, sma.income, 'go')
+ax1.set_title('Income vs Work Force')
+
+ax2.plot(sma.hospital_beds, sma.income, 'r^')
+ax2.set_title('Income vs WHospital Beds')
+
+
+# 2 rows and 1 column
+plt.subplot(2, 1, 1)  # row, column, index
+plt.plot(sma.work_force, sma.income, 'go')
+
+plt.subplot(2, 1, 2)  # row, column, index
+plt.plot(sma.hospital_beds, sma.income, 'r^')
+
+plt.suptitle('Sub Plots')
+plt.show
+
+
+# 2 rows ad 2 columns
+fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(6, 6), sharey=True)  #creating a grid of 2 rows, 2 columns and 6x6 figure size
+
+ax[0, 0].plot(sma.work_force, sma.income, 'go')
+ax[0, 1].plot(sma.work_force, sma.income, 'bo')
+ax[1, 0].plot(sma.work_force, sma.income, 'yo')
+ax[1, 1].plot(sma.work_force, sma.income, 'ro')
+
+plt.show()
