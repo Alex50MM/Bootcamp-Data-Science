@@ -34,5 +34,5 @@ print(exam_scores.lunch.fillna('unknown', inplace = True))
 print(exam_scores['math score'].mean())
 
 # fill the missing value with mean number
-print(exam_scores['math score'].fillna9exam_scores['math scores'].mean().inplace = True)
+print(exam_scores['math score'].fillna(exam_scores['math scores'].mean().inplace = True)
 print(exam_scores)
