@@ -41,3 +41,20 @@ sns.relplot(x='total_bill', y='tip', hue='smoker', data=tips)
 #  the line joining all the dots by arranging the variable value on the x-axis
 sns.relplot(x='total_bill', y='tip', kind='line', data=tips)
 sns.relplot(x='total_bill', y='tip', sort=False, kind='line', data=tips)
+
+
+# Categorical Data Types
+# Scatterplot
+sns.catplot(x='sex', y='tip', data=tips)
+sns.catplot(x='day', y='total_bill', hue='sex', kind='swarm', data=tips)
+sns.catplot(x='smoker', y='tip', order=['No', 'Yes'], data=tips)
+
+# Boxplot
+sns.catplot(x='day', y='total_bill', kind='box', data=tips)
+sns.catplot(x='day', y='total_bill', hue='sex', kind='box', data=tips)
+
+# Violin plot
+sns.catplot(x='day', y='total_bill', hue='sex', kind='violin', data=tips)
+
+# Point plots
+sns.catplot(x='day', y='total_bill', hue='sex', kind='point', data=tips)
