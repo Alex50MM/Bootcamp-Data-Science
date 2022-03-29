@@ -103,12 +103,6 @@ print(most_freq)
 house_copy2[non_numeric_cols] = house_copy2[non_numeric_cols].fillna(most_freq)
 
 
-'''
-Continuar amanhã
-https://www.justintodata.com/data-cleaning-techniques-python-guide/
-Irregular data (outliers)
-'''
-
 # Irregular data (outliers)
 # outliers is broadly defined for numeric data only
 
@@ -161,3 +155,24 @@ house_dedupped = house.drop(columns=['id']).drop_duplicates()
 
 print(house.shape)
 print(house_dedupped.shape)
+
+
+# Inconsistent data
+# Inconsistent type #1: capitalization - upper and lower case upper and lower case
+print(house['sub_area'].value_counts(dropna=False))
+
+#To avoid this, we can lowercase (or uppercase) all letters
+house['sub_area_lower'] = house['sub_area'].str.lower()
+print(house['sub_area_lower'].value_counts(dropna=False))
+
+
+# Inconsistent type #2: data types
+print(house['timestamp'])
+# convert the column to a DateTime format and even
+# extract the specific year, month, weekday, etc
+house['timestamp_dt'] = pd.to_datetime(house['timestamp'], format='%Y-%m-%d')
+house['year'] = house['timestamp_dt'].dt.year
+house['month'] = house['timestamp_dt'].dt.month
+house['weekday'] = house['timestamp_dt'].dt.weekday
+
+print(house[['timestamp_dt', 'year', 'month', 'weekday']].head())

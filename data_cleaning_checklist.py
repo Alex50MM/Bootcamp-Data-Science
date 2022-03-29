@@ -101,3 +101,78 @@ most_freq = house_copy2[non_numeric_cols].describe().loc['top']
 print(most_freq)
 # Then we can use it to fill in the missing
 house_copy2[non_numeric_cols] = house_copy2[non_numeric_cols].fillna(most_freq)
+
+
+# Irregular data (outliers)
+# outliers is broadly defined for numeric data only
+
+# Method #1: descriptive statistics
+print(house.kurt(numeric_only=True)[:10])  # single statistic to detect potential outlier
+
+print(house['life_sq'].describe())
+
+
+# Method #2: histogram & box plot
+print(house['life_sq'].hist(bins=100))  # Histogram
+print(house.boxplot(column=['life_sq']))  # Boxplot
+
+
+# Method #3: bar chart
+print(house['ecology'].value_counts().plot(kind='bar'))
+
+
+# Unnecessary data
+# Unnecessary type #1: repetitive & uninformative
+
+num_rows = len(house)
+
+for col in house.columns:
+    cnts = house[col].value_counts(dropna=False)
+    top_pct = (cnts / num_rows).iloc[0]
+    
+    if top_pct > 0.999:
+        print('{0}: {1:, .2f}%'.format(col, top_pct*100))
+        print(cnts)
+        print()
+
+# Unnecessary type #2: irrelevant
+# When the features are not serving the project’s goal, we can remove them.
+# You could use the drop method in pandas
+
+
+# Unnecessary type #3: duplicates
+# Duplicates type #1: all columns based
+print(house[house.duplicated()])
+print(house.drop_duplicates())
+
+
+# Duplicates type #2: key columns based
+print(house[house.drop(columns=['id']).duplicated()])
+
+# We could remove them and save the new dataset as df_dedupped.
+# We can also compare the shapes of the two datasets (df and df_dedupped)
+house_dedupped = house.drop(columns=['id']).drop_duplicates()
+
+print(house.shape)
+print(house_dedupped.shape)
+
+
+# Inconsistent data
+# Inconsistent type #1: capitalization - upper and lower case upper and lower case
+print(house['sub_area'].value_counts(dropna=False))
+
+#To avoid this, we can lowercase (or uppercase) all letters
+house['sub_area_lower'] = house['sub_area'].str.lower()
+print(house['sub_area_lower'].value_counts(dropna=False))
+
+
+# Inconsistent type #2: data types
+print(house['timestamp'])
+# convert the column to a DateTime format and even
+# extract the specific year, month, weekday, etc
+house['timestamp_dt'] = pd.to_datetime(house['timestamp'], format='%Y-%m-%d')
+house['year'] = house['timestamp_dt'].dt.year
+house['month'] = house['timestamp_dt'].dt.month
+house['weekday'] = house['timestamp_dt'].dt.weekday
+
+print(house[['timestamp_dt', 'year', 'month', 'weekday']].head())
