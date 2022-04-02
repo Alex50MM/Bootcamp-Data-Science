@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['week2\\day_4_5\\module1.py', 'week2\\day3_russian.py']
+recent_files = ['week2\\day_4_5\\module1.py', 'week2\\day3_russian.py', 'week3\\day1_ml_titanic.py']
 
 [main]
 version = 0.2.0

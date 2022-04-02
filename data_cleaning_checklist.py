@@ -14,6 +14,14 @@ house = pd.read_csv('C:/Users/alexc/Documents/Bootcamp/data/sberbank.csv')
 
 print(house.info(verbose=True))
 
+# TO SHOW ALL COLUMNS AND ROWS DATA ON PRINT DATAFRAME
+# pd.set_option('display.max_columns', None)
+# pd.set_option('display.max_rows', None)
+
+# pd.set_option('display.max_rows', 500) # If change to 1000 show all data
+# pd.set_option('display.max_columns', 500)
+# pd.set_option('display.width', 1000)
+
 print(house.head())
 
 
